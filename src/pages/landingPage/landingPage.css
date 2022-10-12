@@ -1,0 +1,63 @@
+.main{
+  background-image: linear-gradient(to top, #afafad 0%, #dddcd7 24%, #e2c9cc 30%, #e7627d 46%, #b8235a 59%, #801357 71%, #3d1635 84%, #1c1a27 100%);
+  background-size: cover;
+  height: 100vh;
+}
+
+.bodyContainer
+{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  position: relative;
+  top:5rem;
+  justify-content: space-around;
+  height: 300px;
+  padding-top: 80px;
+}
+
+.logoCard{
+  text-align: center;
+  width: 400px;
+  height: 500px;
+  background-image: linear-gradient(to top, #c4c5c7 0%, #dcdddf 52%, #ebebeb 100%);
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: all 0.2s ease-in-out;
+  border: 2px solid black;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.658);
+}
+
+.logoCard:hover{
+  background-image: linear-gradient(to top, #c4c5c7 0%, #dcdddf 52%, #ebebeb 100%);
+  box-shadow: 0 0 11px rgba(33,33,33,.2);
+  scale: 1.03;
+}
+
+.logoCard img{
+  width: 370px;
+  height: 360px;
+}
+
+.logoCard a{
+  margin-top: 2rem;
+  width: 200px;
+  height: 50px ;
+  border-radius: 5px;
+  background-color: white;
+  border: 2px solid black;
+  font-size: 30px;
+  text-decoration: none;
+  color: black;
+  padding-top: 10px;
+  transition: all 0.2s ease-in-out;;
+}
+
+.logoCard a:hover{
+  background-color: #b8235a;
+  color: #e2c9cc;
+  box-shadow: 0 0 11px rgba(33,33,33,.2);
+}
