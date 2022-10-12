@@ -30,3 +30,10 @@ export const createUser = async ({
     return response;
   } catch (error) {}
 };
+
+export const srGetUserName = async (u_email) => {
+  try {
+    const response = await axios.get(url + "/get_user_name/" + u_email);
+    return response.data;
+  } catch (error) {}
+};

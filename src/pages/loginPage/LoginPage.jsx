@@ -30,10 +30,10 @@ export const LoginPage = () => {
       alert("Invalid Credentials")
     }
     else if (res === "barber") {
-      navigate('/barber-dashboard')
+      navigate("/barber-dashboard", { state: { u_email: userCredentials.u_email } })
     }
     else if (res === "customer") {
-      navigate('/customer-dashboard')
+      navigate('/customer-dashboard', { state: { u_email: userCredentials.u_email } })
     }
   }
 
