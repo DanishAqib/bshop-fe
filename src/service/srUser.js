@@ -18,6 +18,7 @@ export const createUser = async ({
   u_email,
   u_password,
   u_role,
+  u_location,
 }) => {
   try {
     const response = await axios.post(url + "/add_user", {
@@ -26,14 +27,15 @@ export const createUser = async ({
       u_email,
       u_password,
       u_role,
+      u_location,
     });
     return response;
   } catch (error) {}
 };
 
-export const srGetUserName = async (u_email) => {
+export const srGetUserInfo = async (u_email) => {
   try {
-    const response = await axios.get(url + "/get_user_name/" + u_email);
+    const response = await axios.get(url + "/get_user_info/" + u_email);
     return response.data;
   } catch (error) {}
 };

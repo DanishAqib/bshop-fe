@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, Link } from "react-router-dom";
 import "./customerDashboard.css";
-import { srGetUserName } from "../../service/srUser";
+import { srGetUserInfo } from "../../service/srUser";
 
 export const CustomerDashboard = () => {
   const location = useLocation();
@@ -10,16 +10,16 @@ export const CustomerDashboard = () => {
     alert("Invalid Credentials");
     window.location.href = "/";
   }
-  const [u_firstname, setU_firstname] = useState("");
+  const [u_info, setU_info] = useState({});
   useEffect(() => {
-    srGetUserName(u_email).then((res) => {
+    srGetUserInfo(u_email).then((res) => {
       if (res) {
-        if(u_firstname === "") {
-          setU_firstname(res.u_firstname);
+        if(u_info.u_firstname !== res.u_firstname) {
+          setU_info(res);
         }
       }
     });
-  }, [u_email, u_firstname]);
+  }, [u_email, u_info]);
 
   return (
     <>
@@ -29,7 +29,7 @@ export const CustomerDashboard = () => {
           <h1>Book<span>Barber</span></h1>
         </div>
         <div className="user__name">
-          <h3>Hi, <span>{u_firstname}</span></h3>
+          <h3>Hi, <span>{u_info.u_firstname}</span></h3>
         </div>
         <div className="logout-btn">
           <button style={{width:"10rem"}}

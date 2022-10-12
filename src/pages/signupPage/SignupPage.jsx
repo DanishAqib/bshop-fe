@@ -20,7 +20,8 @@ export const SignupPage = () => {
     u_email: '',
     u_password: '',
     u_cPassword: '',
-    u_role: isBarber ? 'barber' : 'customer'
+    u_role: isBarber ? 'barber' : 'customer',
+    u_location: '',
   });
 
   const onInputChange = (e) => {
@@ -43,10 +44,10 @@ export const SignupPage = () => {
       alert("Email Already Exists")
     }
     else if (res.data.u_role === "barber") {
-      navigate('/barber-dashboard')
+      navigate("/barber-dashboard", { state: { u_email: userInfo.u_email } })
     }
     else if (res.data.u_role === "customer") {
-      navigate('/customer-dashboard')
+      navigate('/customer-dashboard', { state: { u_email: userInfo.u_email } })
     }
   }
 
@@ -82,6 +83,16 @@ export const SignupPage = () => {
                 onChange={onInputChange}
               />
             </Form.Group>
+            {
+              isBarber && isBarber === true && (
+                <Form.Group className="inputGrp" controlId="formBasiclocation">
+                  <Form.Control className="input" type="text" required placeholder="Enter Your Location" name='u_location'
+                    value={userInfo.u_location}
+                    onChange={onInputChange}
+                  />
+                </Form.Group>
+              )
+            }
             <Form.Group className="inputGrp" controlId="formBasicEmail">
               <Form.Control className="input" type="email" required placeholder="Enter email" name='u_email'
                 value={userInfo.u_email}
@@ -100,7 +111,11 @@ export const SignupPage = () => {
                 onChange={onInputChange}
               />
             </Form.Group>
-            <Button className="signupButton" variant="primary" type="submit">
+            <Button className="signupButton" variant="primary" type="submit"
+              style={{
+                marginTop: isBarber && isBarber === true ? "0px" : "20px",
+              }}
+            >
               Submit
             </Button>
             <p>Already Have an Account? <Link className="loginLink" to="/login" state={{isBarber}}>Login</Link></p>
