@@ -24,6 +24,7 @@ export const SettingsPage = () => {
   });
 
   const [b_city, setB_city] = useState("");
+  const [b_shop_name, setB_shop_name] = useState("");
 
   useEffect(() => {
     srGetUserInfo(u_email).then((res) => {
@@ -40,6 +41,7 @@ export const SettingsPage = () => {
     srGetBarberInfo(u_email).then((res) => {
       if (res) {
         setB_city(res.b_city);
+        setB_shop_name(res.b_shop_name);
       }
     });
   }, [u_email]);
@@ -81,15 +83,26 @@ export const SettingsPage = () => {
                 </Form.Group>
                 {
                   u_info.u_role === "barber" && (
-                    <Form.Group className="inputGrp edit-form" controlId="formBasicLocation">
-                      <Form.Label className='form-label'>Location</Form.Label>
-                      <Form.Control style={{textTransform: "capitalize"}} className="input" name="u_location" type="text" placeholder={u_info.b_city} disabled={!isInEditMode}
-                        defaultValue={b_city}
-                        onChange={(e) => {
-                          setB_city(e.target.value);
-                        }}
-                      />
-                    </Form.Group>
+                    <>
+                      <Form.Group className="inputGrp edit-form" controlId="formBasicLocation">
+                        <Form.Label className='form-label'>Location</Form.Label>
+                        <Form.Control style={{textTransform: "capitalize"}} className="input" name="u_location" type="text" placeholder={u_info.b_city} disabled={!isInEditMode}
+                          defaultValue={b_city}
+                          onChange={(e) => {
+                            setB_city(e.target.value);
+                          }}
+                          />
+                      </Form.Group>
+                      <Form.Group className="inputGrp edit-form" controlId="formBasicShopName">
+                        <Form.Label className='form-label'>Shop Name</Form.Label>
+                        <Form.Control style={{textTransform: "capitalize"}} className="input" name="b_shop_name" type="text" placeholder={u_info.b_shop_name} disabled={!isInEditMode}
+                          defaultValue={b_shop_name}
+                          onChange={(e) => {
+                            setB_shop_name(e.target.value);
+                          }}
+                          />
+                      </Form.Group>
+                    </>
                   )
                 }
                 <Form.Group className="inputGrp edit-form" controlId="formBasicPassword">
@@ -107,6 +120,7 @@ export const SettingsPage = () => {
                       srUpdateUserInfo(u_info.u_id, {u_info:{
                         ...u_info,
                         b_city: b_city,
+                        b_shop_name: b_shop_name,
                       }}).then((res) => {
                         if (res) {
                           window.location.reload();

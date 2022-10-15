@@ -21,7 +21,7 @@ export const NavBar = ({u_info}) => {
           <h1>Book<span>Barber</span></h1>
         </div>
         <div className="user__name">
-          { window.location.pathname === "/barber-dashboard" || window.location.pathname === "/customer-dashboard" && (<h3>Hi, <span>{u_firstname}</span></h3>)}
+          { ((window.location.pathname === "/barber-dashboard") || (window.location.pathname === "/customer-dashboard")) && (<h3>Hi, <span>{u_firstname}</span></h3>)}
         </div>
         <div className="logout-btn">
           <button style={{width:"10rem"}}

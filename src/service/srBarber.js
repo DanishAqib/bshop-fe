@@ -17,3 +17,10 @@ export const srGetBarberInfo = async (u_email) => {
     return response.data;
   } catch (error) {}
 };
+
+export const srGetAllBarbers = async () => {
+  try {
+    const response = await axios.get(url + "/all_barbers");
+    return response.data;
+  } catch (error) {}
+};

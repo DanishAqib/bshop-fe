@@ -18,7 +18,8 @@ export const createUser = async ({
   u_email,
   u_password,
   u_role,
-  u_location,
+  b_city,
+  b_shop_name,
 }) => {
   try {
     const response = await axios.post(url + "/add_user", {
@@ -27,7 +28,8 @@ export const createUser = async ({
       u_email,
       u_password,
       u_role,
-      u_location,
+      b_city,
+      b_shop_name,
     });
     return response;
   } catch (error) {}
@@ -41,7 +43,6 @@ export const srGetUserInfo = async (u_email) => {
 };
 
 export const srUpdateUserInfo = async (u_id, u_info) => {
-  console.log(u_info);
   try {
     const response = await axios.put(url + "/update_user_info/" + u_id, {
       u_info,

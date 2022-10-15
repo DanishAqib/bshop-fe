@@ -21,7 +21,8 @@ export const SignupPage = () => {
     u_password: '',
     u_cPassword: '',
     u_role: isBarber ? 'barber' : 'customer',
-    u_location: '',
+    b_city: '',
+    b_shop_name: '',
   });
 
   const onInputChange = (e) => {
@@ -85,12 +86,20 @@ export const SignupPage = () => {
             </Form.Group>
             {
               isBarber && isBarber === true && (
-                <Form.Group className="inputGrp" controlId="formBasiclocation">
-                  <Form.Control className="input" type="text" required placeholder="Enter Your Location" name='u_location'
-                    value={userInfo.u_location}
-                    onChange={onInputChange}
-                  />
-                </Form.Group>
+                <>
+                  <Form.Group className="inputGrp" controlId="formBasicShopName">
+                    <Form.Control className="input" type="text" required placeholder="Enter Shop Name" name='b_shop_name'
+                      value={userInfo.b_shop_name}
+                      onChange={onInputChange}
+                    />
+                  </Form.Group>
+                  <Form.Group className="inputGrp" controlId="formBasiclocation">
+                    <Form.Control className="input" type="text" required placeholder="Enter Shop Location" name='b_city'
+                      value={userInfo.b_city}
+                      onChange={onInputChange}
+                      />
+                  </Form.Group>
+                </>
               )
             }
             <Form.Group className="inputGrp" controlId="formBasicEmail">

@@ -39,7 +39,7 @@ export const CustomerDashboard = () => {
             </p>
           </div>
           <div className="card__footer">
-            <Link to="/make-appointment">
+            <Link to="/make-appointment" state={{ u_info: u_info }}>
               <button>Make an Appointment</button>
             </Link>
           </div>
@@ -84,7 +84,7 @@ export const CustomerDashboard = () => {
             </p>
           </div>
           <div className="card__footer">
-            <Link to="/view-my-profile">
+            <Link to="/settings" state={{ u_info: u_info }}>
               <button>View My Profile</button>
             </Link>
           </div>

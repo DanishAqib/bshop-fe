@@ -3,6 +3,7 @@ import { updateBarberStatus } from '../service/srBarber';
 
 export const StatusDialog = ({setOpenStatusChangeDialog, u_id}) => {
   const [statusValue, setStatusValue] = useState();
+  const [isValueSelected, setIsValueSelected] = useState(false);
   return (
     <>
       <div className="status-dialog">
@@ -10,8 +11,12 @@ export const StatusDialog = ({setOpenStatusChangeDialog, u_id}) => {
           <h3>Update Status</h3>
         </div>
         <div className="status-dialog__body">
-          <select name="status" id="status" value={statusValue}
-            onChange={(e) => setStatusValue(e.target.value)}
+          <select name="status" id="status"
+            defaultValue={statusValue}
+            onChange={(e) => {
+              setStatusValue(e.target.value);
+              setIsValueSelected(true);
+            }}
             style={{
               marginTop: '10px',
               width: '10rem',
@@ -25,15 +30,19 @@ export const StatusDialog = ({setOpenStatusChangeDialog, u_id}) => {
               outline: 'none'
             }}
           >
+            <option defaultValue="" disabled selected hidden>Select Status</option>
             <option value="available">Available</option>
             <option value="busy">Busy</option>
           </select>
         </div>
         <div className="status-dialog__footer">
           <button
+            style={{
+              opacity: isValueSelected ? 1 : 0.5,
+              pointerEvents: isValueSelected ? 'auto' : 'none',
+            }}
             onClick={() => {
-              const resp = updateBarberStatus(u_id, statusValue);
-              console.log(resp);
+              updateBarberStatus(u_id, statusValue);
               alert("Status Updated");
               setOpenStatusChangeDialog(false);
             }}

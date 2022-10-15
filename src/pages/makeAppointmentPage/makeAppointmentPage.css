@@ -1,0 +1,110 @@
+.make-appointment-page {
+  height: 100vh;
+  width: 100%;
+  background-image: linear-gradient(120deg, #a6c0fe 0%, #f68084 100%);
+  background-size: cover;
+}
+
+.make-appointment-page__container{
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  padding: 20px;
+  width: 70%;
+  height: 80%;
+  margin: 0 auto;
+  position: relative;
+  top: 12%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.make-appointment-page__title{
+  font-size: 3rem;
+  font-weight: 600;
+  color: rgb(22, 22, 22);
+  text-decoration: none;
+}
+
+.make-appointment-page__search input{
+  width: 100%;
+  height: 3rem;
+  border-radius: 10px;
+  border: none;
+  padding: 0 1rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: rgb(22, 22, 22);
+  outline: none;
+  margin-left: -1rem;
+}
+
+.make-appointment-page__shop-list{
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2rem;
+  width: 100%;
+  height: max-content;
+  overflow-y: scroll;
+  padding: 1rem;
+}
+
+.make-appointment-page__shop-list::-webkit-scrollbar {
+  width: .6rem;
+}
+
+.make-appointment-page__shop{
+  width: 30%;
+  height: 18rem;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.make-appointment-page__shop h4{
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: rgb(22, 22, 22);
+  text-decoration: none;
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+.make-appointment-page__shop__info{
+  text-transform: capitalize;
+  margin-top: 1rem;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+}
+
+.make-appointment-page__shop__info h5{
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgb(22, 22, 22);
+  text-decoration: none;
+  color: rgb(22, 22, 22);
+  margin:10px 0;
+}
+
+.make-appointment-page__shop__info h5 span{
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: normal;
+  color: #9c741e;
+  text-decoration: none;
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+.make-appointment-page__shop__select-barber{
+  margin-top: 1rem;
+  width: 50%;
+  background: #467dff;
+}
