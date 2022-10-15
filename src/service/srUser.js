@@ -39,3 +39,13 @@ export const srGetUserInfo = async (u_email) => {
     return response.data;
   } catch (error) {}
 };
+
+export const srUpdateUserInfo = async (u_id, u_info) => {
+  console.log(u_info);
+  try {
+    const response = await axios.put(url + "/update_user_info/" + u_id, {
+      u_info,
+    });
+    return response;
+  } catch (error) {}
+};

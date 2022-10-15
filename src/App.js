@@ -4,6 +4,7 @@ import { LoginPage } from "./pages/loginPage/LoginPage";
 import { SignupPage } from "./pages/signupPage/SignupPage";
 import { BarberDashboard } from "./pages/barberDashboard/BarberDashboard";
 import { CustomerDashboard } from "./pages/customerDashboard/CustomerDashboard";
+import { SettingsPage } from "./pages/settingsPage/SettingsPage";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/barber-dashboard" element={<BarberDashboard />} />
       <Route path="/customer-dashboard" element={<CustomerDashboard />} />
+      <Route path="/settings" element={<SettingsPage />} />
     </Routes>
   );
 }

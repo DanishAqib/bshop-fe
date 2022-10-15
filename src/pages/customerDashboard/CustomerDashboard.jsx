@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, Link } from "react-router-dom";
 import "./customerDashboard.css";
 import { srGetUserInfo } from "../../service/srUser";
+import { NavBar } from '../../components/Navbar';
 
 export const CustomerDashboard = () => {
   const location = useLocation();
@@ -24,21 +25,7 @@ export const CustomerDashboard = () => {
   return (
     <>
     <div className='dashboard'>
-      <div className="navbar">
-        <div className="navbar__logo">
-          <h1>Book<span>Barber</span></h1>
-        </div>
-        <div className="user__name">
-          <h3>Hi, <span>{u_info.u_firstname}</span></h3>
-        </div>
-        <div className="logout-btn">
-          <button style={{width:"10rem"}}
-            onClick={() => {
-              window.location.href = "/";
-            }}
-          >Logout</button>
-        </div>
-      </div>
+      <NavBar u_info={u_info} />
       <div className="dasboard__container">
         <div className="card">
           <div className="card__header">
@@ -82,7 +69,7 @@ export const CustomerDashboard = () => {
             </p>
           </div>
           <div className="card__footer">
-            <Link to="/settings">
+            <Link to="/settings" state={{ u_info: u_info }}>
               <button>Settings</button>
             </Link>
           </div>

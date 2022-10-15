@@ -3,6 +3,7 @@ import { useLocation, Link } from "react-router-dom";
 import "./barberDashboard.css";
 import { srGetUserInfo } from "../../service/srUser";
 import { StatusDialog } from '../../components/statusDialog';
+import { NavBar } from '../../components/Navbar';
 
 export const BarberDashboard = () => {
   const location = useLocation();
@@ -29,21 +30,7 @@ export const BarberDashboard = () => {
     <div className='dashboard'
       style={{ opacity: openStatusChangeDialog ? 0.5 : 1, pointerEvents: openStatusChangeDialog ? 'none' : 'auto' }}
     >
-      <div className="navbar">
-        <div className="navbar__logo">
-          <h1>Book<span>Barber</span></h1>
-        </div>
-        <div className="user__name">
-          <h3>Hi, <span>{u_info.u_firstname}</span></h3>
-        </div>
-        <div className="logout-btn">
-          <button style={{width:"10rem"}}
-            onClick={() => {
-              window.location.href = "/";
-            }}
-          >Logout</button>
-        </div>
-      </div>
+      <NavBar u_info={u_info} />
       <div className="dasboard__container">
         <div className="card">
           <div className="card__header">
@@ -85,7 +72,7 @@ export const BarberDashboard = () => {
             </p>
           </div>
           <div className="card__footer">
-            <Link to="/settings">
+            <Link to="/settings" state={{ u_info: u_info }} >
               <button>Settings</button>
             </Link>
           </div>

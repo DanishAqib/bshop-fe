@@ -29,6 +29,7 @@
   font-weight: 600;
   color: rgb(22, 22, 22);
   text-decoration: none;
+  cursor: pointer;
 }
 
 .navbar__logo span{
@@ -44,6 +45,7 @@
 
 .user__name span{
   color: #9c741e;
+  text-transform: capitalize;
 }
 
 .logout-btn button{
@@ -73,7 +75,6 @@
   border-radius: 10px;
   width: 86%;
   height: 80%;
-  overflow: hidden;
   margin-top: 60px;
 }
 
