@@ -50,3 +50,22 @@ export const srUpdateUserInfo = async (u_id, u_info) => {
     return response;
   } catch (error) {}
 };
+
+export const srMakeAppoinmentRequest = async (
+  u_id,
+  b_id,
+  uar_time,
+  uar_services,
+  uar_total_price
+) => {
+  try {
+    const response = await axios.post(url + "/make_appointment", {
+      u_id,
+      b_id,
+      uar_time,
+      uar_services,
+      uar_total_price,
+    });
+    return response;
+  } catch (error) {}
+};

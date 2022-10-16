@@ -7,12 +7,14 @@ import facialImage from "../../assets/images/facial.jpg";
 import massageImage from "../../assets/images/massage.jpg";
 import groomPackageImage from "../../assets/images/groom.jpeg";
 import hairStylingImage from "../../assets/images/hair_styling.jpg";
+import cartIcon from "../../assets/icons/cart-icon-b.png"
 import { FacialServices } from "../../shared/barberServices/FacialServices";
 import { BeardServices } from "../../shared/barberServices/BeardServices";
 import { GroomServices } from "../../shared/barberServices/GroomServices";
 import { HairServices } from "../../shared/barberServices/HairServices";
 import { HairStylingServices } from "../../shared/barberServices/HairStylingServices";
 import { MassageServices } from "../../shared/barberServices/MassageServices";
+import { CartDialog } from "../../components/CartDialog";
 
 import "./selectServicesPage.css";
 
@@ -23,6 +25,7 @@ export const SelectServicesPage = () => {
     window.location.href = "/";
   }
   const [openServicesDialog, setOpenServicesDialog] = useState(false);
+  const [openCartDialog, setOpenCartDialog] = useState(false);
   const [openedServices, setOpenedServices] = useState([]);
   const [openedServiceName, setOpenedServiceName] = useState("");
   const [selectedServices, setSelectedServices] = useState([]);
@@ -35,7 +38,6 @@ export const SelectServicesPage = () => {
       setTotalPrice(totalPrice - service.s_price);
     }
   };
-
 
   const SelectServicesDialog = ({serviceType, openedServiceName}) => {
     return (
@@ -93,15 +95,27 @@ export const SelectServicesPage = () => {
       <NavBar u_info={u_info}/>
       <div className="services__page"
         style={{
-          filter: openServicesDialog ? "blur(5px)" : "none",
-          pointerEvents: openServicesDialog ? "none" : "auto"
+          filter: (openServicesDialog || openCartDialog) ? "blur(6px)" : "none",
+          pointerEvents: (openServicesDialog || openCartDialog) ? "none" : "auto"
         }}
       >
-        <div className="appointment__details__container">
-          <h3>Appointment Details</h3>
-          <h4>Selected Time: <span>{appointmentTime}</span></h4>
-          <h4>Barber Shop Name: <span>{selectedBarber.b_shop_name}</span></h4>
-          <h4>Barber Shop Location: <span>{selectedBarber.b_city}</span></h4>
+        <div className="services__page__top">
+          <div className="appointment__details__container">
+            <h3>Appointment Details</h3>
+            <h4>Selected Time: <span>{appointmentTime}</span></h4>
+            <h4>Barber Shop Name: <span>{selectedBarber.b_shop_name}</span></h4>
+            <h4>Barber Shop Location: <span>{selectedBarber.b_city}</span></h4>
+          </div>
+          <div className="cart__container">
+            <button className={`cart__button ${selectedServices.length === 0 ? "disable-btn" : ""}`}
+              onClick={()=>{
+                setOpenCartDialog(!openCartDialog);
+              }}
+            >
+              <img src={cartIcon} alt="cart-icon" />
+              <span>View Cart</span>
+            </button>
+          </div>
         </div>
         <div className="services__list">
           <div className="services__list__card">
@@ -171,6 +185,19 @@ export const SelectServicesPage = () => {
           <SelectServicesDialog 
             serviceType={openedServices} 
             openedServiceName={openedServiceName}
+          />
+        )
+      }
+      {
+        openCartDialog && (
+          <CartDialog
+            selectedServices={selectedServices}
+            totalPrice={totalPrice}
+            openCartDialog={openCartDialog}
+            setOpenCartDialog={setOpenCartDialog}
+            u_info={u_info}
+            appointmentTime={appointmentTime}
+            selectedBarber={selectedBarber}
           />
         )
       }

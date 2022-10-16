@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, Link } from "react-router-dom";
 import "./barberDashboard.css";
 import { srGetUserInfo } from "../../service/srUser";
-import { StatusDialog } from '../../components/statusDialog';
+import { StatusDialog } from '../../components/StatusDialog';
 import { NavBar } from '../../components/Navbar';
 
 export const BarberDashboard = () => {

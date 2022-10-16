@@ -1,5 +1,5 @@
 .services__page{
-  height: 100vh;
+  height: 94.9vh;
   width: 100%;
   background-image: linear-gradient(120deg, #a6c0fe 0%, #f68084 100%);
   background-size: cover;
@@ -19,6 +19,14 @@
   align-items: center;
 }
 
+.services__page__top{
+  display: flex;
+  margin-top: 3rem;
+  justify-content: center;
+  align-items: center;
+  gap: 10rem;
+}
+
 .appointment__details__container{
   display: flex;
   flex-direction: column;
@@ -27,8 +35,24 @@
   width: 30%;
   position: relative;
   top:5%;
-  margin: 0 auto;
   padding-left: 1rem;
+}
+
+.cart__container{
+  width: 10rem;
+}
+
+.cart__button{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 0;
+}
+
+.cart__button img{
+  width: 25px;
+  height: 25px;
 }
 
 .appointment__details__container h3{
@@ -61,7 +85,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin-top: 5rem;
+  margin-top: 2rem;
 }
 
 .services__list__card{
@@ -171,4 +195,72 @@
 .disable-btn{
   background-color: #9c9c9c;
   pointer-events: none;
+}
+
+.cart__dialog{
+  height: 55%;
+  width: 40%;
+}
+
+.cart__dialog__container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;  
+  gap: 1rem;
+  width: 100%;
+  height: 100%;
+}
+
+.cart__dialog__container h3{
+  font-size: 2rem;
+  font-weight: 600;
+  color: rgb(22, 22, 22);
+  text-decoration: none;
+}
+
+.selected__services__list{
+  width: 25rem;
+  height: 13rem;
+  overflow-y: scroll;
+  padding-right: 0.3rem;
+  border: 1px solid #0000001f;
+  padding: .5rem;
+}
+
+.selected__services__list::-webkit-scrollbar {
+  width: 5px;
+}
+
+.selected__services__list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.selected__services__list::-webkit-scrollbar-thumb {
+  background: #9c741e;
+}
+
+.services__list-item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1.5px solid #c0c0c036;
+  margin-bottom: 0.5rem;
+}
+
+.cart__dialog__button__container{
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  gap: 1rem;
+  margin-right: 2rem;
+}
+
+.services__dialog__button{
+  margin-top: 0;
+}
+
+.selected__services__list__item__total{
+  width: 50%;
+  font-size: 1.2rem;
 }

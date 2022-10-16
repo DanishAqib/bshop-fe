@@ -32,6 +32,7 @@ export const StatusDialog = ({setOpenStatusChangeDialog, u_id}) => {
           >
             <option defaultValue="" disabled selected hidden>Select Status</option>
             <option value="available">Available</option>
+            <option value="not available">Not Available</option>
             <option value="busy">Busy</option>
           </select>
         </div>
