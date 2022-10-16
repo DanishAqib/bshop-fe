@@ -6,6 +6,7 @@ import { BarberDashboard } from "./pages/barberDashboard/BarberDashboard";
 import { CustomerDashboard } from "./pages/customerDashboard/CustomerDashboard";
 import { SettingsPage } from "./pages/settingsPage/SettingsPage";
 import { MakeAppointmentPage } from "./pages/makeAppointmentPage/MakeAppointmentPage";
+import { SelectServicesPage } from "./pages/selectServicesPage/SelectServicesPage";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <Route path="/customer-dashboard" element={<CustomerDashboard />} />
       <Route path="/settings" element={<SettingsPage />} />
       <Route path="/make-appointment" element={<MakeAppointmentPage />} />
+      <Route path="/select-services" element={<SelectServicesPage />} />
     </Routes>
   );
 }

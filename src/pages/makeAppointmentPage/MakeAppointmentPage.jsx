@@ -3,6 +3,7 @@ import { NavBar } from "../../components/Navbar";
 import { useLocation } from "react-router-dom";
 import { srGetUserInfo } from '../../service/srUser';
 import { srGetAllBarbers } from '../../service/srBarber';
+import { SelectTimeDialog } from '../../components/SelectTimeDialog';
 import "./makeAppointmentPage.css";
 
 export const MakeAppointmentPage = () => {
@@ -14,6 +15,17 @@ export const MakeAppointmentPage = () => {
   const [u_info, setU_info] = useState({});
   const [barber_info, setBarber_info] = useState([]);
   const [searchValue, setSearchValue] = useState('');
+  const [appointmentTime, setAppointmentTime] = useState('');
+  const [selectTimeDialog, setSelectTimeDialog] = useState(false);
+  const [selectedBarber, setSelectedBarber] = useState({});
+  const availableTimeSlots = [
+    '9:00 AM',
+    '11:00 AM',
+    '1:00 PM',
+    '3:00 PM',
+    '5:00 PM',
+    '7:00 PM',
+  ];
 
   useEffect(() => {
     srGetUserInfo(u_email).then((res) => {
@@ -32,7 +44,10 @@ export const MakeAppointmentPage = () => {
     });
   }, [u_email, u_info, barber_info]);
   return (
-    <div>
+    <>
+    <div
+      style={{ opacity: selectTimeDialog ? 0.5 : 1, pointerEvents: selectTimeDialog ? 'none' : 'auto' }}
+    >
       <NavBar u_info={u_info}/>
       <div className='make-appointment-page'>
         <div className="make-appointment-page__container">
@@ -67,22 +82,23 @@ export const MakeAppointmentPage = () => {
                         <h5>Shop Name: <span>{barber.b_shop_name}</span></h5>
                         <h5>Barber Name: <span>{barber.u_firstname} {barber.u_lastname}</span></h5>
                         <h5>Shop Location: <span>{barber.b_city}</span></h5>
-                        <h5>Shop Status: <span
-                          style={{
-                            color: barber.b_status === "available" ? "green" : "red"
-                          }}
-                        >{barber.b_status}</span></h5>
+                        <h5>Shop Status: 
+                          <span
+                            style={{
+                              color: barber.b_status === "available" ? "green" : "red"
+                            }}
+                          > {barber.b_status}</span></h5>
                       </div>
                       <button type="button"
-                        className="make-appointment-page__shop__select-barber"
-                        style={{
-                          pointerEvents: barber.b_status === "available" ? 'auto' : 'none',
-                          backgroundColor: barber.b_status === "available" ? '#2f80ed' : '#ccc',
+                        className={`make-appointment-page__shop__select-barber ${barber.b_status === "available" ? "" : "disable-btn"}`}
+                        onClick={() => {
+                          setSelectTimeDialog(!selectTimeDialog);
+                          setSelectedBarber(barber);
                         }}
                       >
-                        {
-                          barber.b_status === "available" ? "Select Barber" : "Unavailable"
-                        }
+                      {
+                        barber.b_status === "available" ? "Select Barber" : "Unavailable"
+                      }
                       </button>
                     </div>
                   </>
@@ -93,5 +109,19 @@ export const MakeAppointmentPage = () => {
         </div>
       </div>
     </div>
+    {
+      selectTimeDialog && 
+      <SelectTimeDialog 
+        availableTimeSlots={availableTimeSlots}
+        appointmentTime={appointmentTime}
+        setAppointmentTime={setAppointmentTime}
+        setSelectTimeDialog={setSelectTimeDialog}
+        selectTimeDialog={selectTimeDialog}
+        u_info={u_info}
+        selectedBarber={selectedBarber}
+        setSelectedBarber={setSelectedBarber}
+      />
+    }
+  </>
   );
 }
