@@ -34,7 +34,7 @@ export const BarberDashboard = () => {
       <div className="dasboard__container">
         <div className="card">
           <div className="card__header">
-            <h3>Confirm an Appointment</h3>
+            <h3>Appointment Requests</h3>
           </div>
           <div className="card__body">
             <p>
@@ -42,7 +42,7 @@ export const BarberDashboard = () => {
             </p>
           </div>
           <div className="card__footer">
-            <Link to="/confirm-appointment">
+            <Link to="/confirm-appointment" state={{ u_info: u_info }}>
               <button>Confirm an Appointment</button>
             </Link>
           </div>

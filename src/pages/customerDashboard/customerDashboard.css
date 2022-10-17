@@ -73,8 +73,24 @@
   border-radius: 10px;
   width: 86%;
   height: 80%;
-  overflow: hidden;
   margin-top: 60px;
+}
+
+/* style dashboard container scroll */
+.dasboard__container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dasboard__container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.dasboard__container::-webkit-scrollbar-thumb {
+  background: #9c741e;
+}
+
+.dasboard__container::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 .card{

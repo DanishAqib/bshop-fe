@@ -58,7 +58,7 @@ export const SettingsPage = () => {
           <h3 className="settings-page__header">Update Profile</h3>
           <div className="settings-page__profile">
             <div className="settings-page__container__left">
-              <Form
+              <Form className='settings-page__form'
                 onSubmit={(e) => {
                   e.preventDefault();
                 }}

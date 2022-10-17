@@ -32,6 +32,12 @@
   cursor: pointer;
 }
 
+@media screen and (max-width: 529px) {
+  .navbar__logo{
+    display: none;
+  }
+}
+
 .navbar__logo span{
   color: #9c741e;
 }
@@ -41,6 +47,12 @@
   font-weight: 600;
   color: rgb(22, 22, 22);
   text-decoration: none;
+}
+
+@media screen and (max-width: 690px) {
+  .user__name{
+    display: none;
+  }
 }
 
 .user__name span{
@@ -65,6 +77,18 @@
   background-color: #770000;
 }
 
+.page__container__body__card{
+  width: 100%;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  height: max-content;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  /* add shadow */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
 .dasboard__container{
   display: flex;
   flex-wrap: wrap;
@@ -74,8 +98,13 @@
   padding: 20px;
   border-radius: 10px;
   width: 86%;
-  height: 80%;
   margin-top: 60px;
+}
+
+@media screen and (max-width: 1581px) {
+  .dasboard__container {
+    overflow-y: scroll;
+  }
 }
 
 .card{

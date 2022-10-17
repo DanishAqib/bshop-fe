@@ -1,4 +1,5 @@
 import { srMakeAppoinmentRequest } from "../service/srUser";
+import { formatePrice } from "../shared/utils";
 
 export const CartDialog = ({
   selectedServices,
@@ -23,7 +24,7 @@ export const CartDialog = ({
                 const {s_id, s_name, s_price} = service;
                 return (
                   <div className="selected__services__list__item" key={s_id}>
-                    <div className="services__list-item">{s_name}<span> Rs. {s_price}</span></div>
+                    <div className="services__list-item">{s_name}<span> Rs. {formatePrice(s_price)}</span></div>
                   </div>
                 )
               })

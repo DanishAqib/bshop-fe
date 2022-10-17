@@ -84,9 +84,9 @@ export const srGetUserAppointmentRequest = async (u_id) => {
   } catch (error) {}
 };
 
-export const srCancelAppointmentRequest = async (u_id) => {
+export const srCancelAppointmentRequest = async (uar_id) => {
   try {
-    const response = await axios.delete(url + "/cancel_appointment/" + u_id);
+    const response = await axios.delete(url + "/cancel_appointment/" + uar_id);
     return response;
   } catch (error) {}
 };

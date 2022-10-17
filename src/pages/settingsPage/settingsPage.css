@@ -26,13 +26,23 @@
 }
 
 .form-label{
-  width: 7.5rem;
-  margin-top: 0.5rem;
+  min-width: 7rem;
+}
+
+.input{
+  min-width: 10rem;
 }
 
 .edit-form{
   display: flex;
   flex-direction: row;
+}
+
+/* edit form flex d column if screen width reaches 640px */
+@media screen and (max-width: 640px) {
+  .edit-form{
+    flex-direction: column;
+  }
 }
 
 .settings-page__container__left__btns{

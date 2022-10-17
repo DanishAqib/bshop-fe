@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import { NavBar } from "../../components/Navbar";
 import { useLocation } from "react-router-dom";
 import { srCancelAppointmentRequest, srGetUserAppointmentRequest, srCheckIfAppointmentRequestExists } from '../../service/srUser';
+import { formatePrice, formateDateAndTime } from "../../shared/utils";
 import "./currentAppointmentPage.css";
 
 export const CurrentAppointmentPage = () => {
@@ -12,6 +13,7 @@ export const CurrentAppointmentPage = () => {
   }
 
   const [appointmentRequests, setAppointmentRequests] = useState({
+    uar_id: "",
     uar_services: "",
     uar_time: "",
     uar_total_price: "",
@@ -39,30 +41,19 @@ export const CurrentAppointmentPage = () => {
       }
     });
     srCheckIfAppointmentRequestExists(u_info.u_id).then((res) => {
-      console.log(res);
       if (res !== false) {
         setAppointmentExists(true);
       }
     });
   }, [u_info.u_id]);
 
-  const cancelAppointment = (u_id) => {
-    srCancelAppointmentRequest(u_id).then((res) => {
+  const cancelAppointment = (uar_id) => {
+    srCancelAppointmentRequest(uar_id).then((res) => {
       if (res) {
         setAppointmentExists(false);
         alert("Appointment cancelled");
       }
     });
-  };
-
-
-  const formateDateAndTime = (date) => {
-    const month = date.slice(5, 7);
-    const day = date.slice(8, 10);
-    const year = date.slice(0, 4);
-    const time = date.slice(11, 16);
-    const monthName = new Date(year, month - 1, day).toLocaleString('default', { month: 'long' });
-    return `${monthName} ${day}, ${year} at ${time}`;
   };
 
   return (
@@ -76,10 +67,10 @@ export const CurrentAppointmentPage = () => {
           <div className="current-appointment-page__container__body">
             {
               appointmentExists ? (
-              <div className="current-appointment-page__container__body__card">
+              <div className="page__container__body__card">
               <div className="current-appointment-page__card__details">
                 <div className="current-appointment-page__card__details-info">
-                  <p>Barber Name: <span>{barber.u_firstname}</span></p>
+                  <p>Barber Name: <span>{barber.u_firstname} {barber.u_lastname}</span></p>
                 </div>
                 <div className="current-appointment-page__card__details-info">
                   <p>Barber Shop Name: <span>{barberInfo.b_shop_name}</span></p>
@@ -88,7 +79,7 @@ export const CurrentAppointmentPage = () => {
                   <p className="services">Selected Services: <span>{appointmentRequests.uar_services}</span></p>
                 </div>
                 <div className="current-appointment-page__card__details-info">
-                  <p>Total Price: <span>Rs. {appointmentRequests.uar_total_price}</span></p>
+                  <p>Total Price: <span>Rs. {formatePrice(appointmentRequests.uar_total_price)}</span></p>
                 </div>
                 <div className="current-appointment-page__card__details-info">
                   <p>Appointment Time: <span>{appointmentRequests.uar_time}</span></p>
@@ -101,14 +92,14 @@ export const CurrentAppointmentPage = () => {
                 <div className="current-appointment-page__card__status__info">
                   <p>status: </p>
                   <h3 style={{
-                    color: appointmentRequests.uar_status === "pending" ? "red" : "green"}}
+                    color: (appointmentRequests.uar_status === "pending" || appointmentRequests.uar_status === "rejected") ? "red" : "green"}}
                   >
                     {appointmentRequests.uar_status}
                   </h3>
                 </div>
                 <button
-                  onClick={() => cancelAppointment(u_info.u_id)}
-                className="cancel__appointment-btn">Cancel Appointment</button>
+                  onClick={() => cancelAppointment(appointmentRequests.uar_id)}
+                className="cancel__appointment-btn">{appointmentRequests.uar_status === "rejected" ? "Remove" : "Cancel Appointment"}</button>
               </div>
             </div>
             ) : <div className="current-appointment-page__container__no-appointment">You currently have no appointment</div>

@@ -7,6 +7,7 @@ import { CustomerDashboard } from "./pages/customerDashboard/CustomerDashboard";
 import { SettingsPage } from "./pages/settingsPage/SettingsPage";
 import { MakeAppointmentPage } from "./pages/makeAppointmentPage/MakeAppointmentPage";
 import { CurrentAppointmentPage } from "./pages/currentAppointmentPage/CurrentAppointmentPage";
+import { ConfirmAppointmentPage } from "./pages/confirmAppointmentPage/ConfirmAppointmentPage";
 import { SelectServicesPage } from "./pages/selectServicesPage/SelectServicesPage";
 import { Routes, Route } from "react-router-dom";
 
@@ -22,6 +23,7 @@ function App() {
       <Route path="/make-appointment" element={<MakeAppointmentPage />} />
       <Route path="/select-services" element={<SelectServicesPage />} />
       <Route path="/current-appointment" element={<CurrentAppointmentPage />} />
+      <Route path="/confirm-appointment" element={<ConfirmAppointmentPage />} />
     </Routes>
   );
 }
