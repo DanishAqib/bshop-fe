@@ -54,7 +54,7 @@ export const CustomerDashboard = () => {
             </p>
           </div>
           <div className="card__footer">
-            <Link to="/view-current-appointment">
+            <Link to="/current-appointment" state={{ u_info: u_info }}>
               <button>View Current Appointment</button>
             </Link>
           </div>

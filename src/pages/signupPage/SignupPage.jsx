@@ -54,7 +54,12 @@ export const SignupPage = () => {
 
   return (
     <>
-      <div className="container">
+      <div className="container"
+        style={{
+          backgroundBlendMode: 'overlay',
+          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        }}
+      >
         <div className="signupForm">
           <h4 className="title">
             {

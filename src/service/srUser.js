@@ -69,3 +69,24 @@ export const srMakeAppoinmentRequest = async (
     return response;
   } catch (error) {}
 };
+
+export const srCheckIfAppointmentRequestExists = async (u_id) => {
+  try {
+    const response = await axios.get(url + "/check_appointment/" + u_id);
+    return response.data;
+  } catch (error) {}
+};
+
+export const srGetUserAppointmentRequest = async (u_id) => {
+  try {
+    const response = await axios.get(url + "/get_appointment/" + u_id);
+    return response.data;
+  } catch (error) {}
+};
+
+export const srCancelAppointmentRequest = async (u_id) => {
+  try {
+    const response = await axios.delete(url + "/cancel_appointment/" + u_id);
+    return response;
+  } catch (error) {}
+};

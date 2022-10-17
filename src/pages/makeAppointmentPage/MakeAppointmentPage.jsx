@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { NavBar } from "../../components/Navbar";
 import { useLocation } from "react-router-dom";
-import { srGetUserInfo } from '../../service/srUser';
+import { srGetUserInfo, srCheckIfAppointmentRequestExists } from '../../service/srUser';
 import { srGetAllBarbers } from '../../service/srBarber';
 import { SelectTimeDialog } from '../../components/SelectTimeDialog';
 import "./makeAppointmentPage.css";
@@ -12,9 +12,11 @@ export const MakeAppointmentPage = () => {
   if (!u_email) {
     window.location.href = "/";
   }
+  const [u_id, setU_id] = useState("");
   const [u_info, setU_info] = useState({});
   const [barber_info, setBarber_info] = useState([]);
   const [searchValue, setSearchValue] = useState('');
+  const [appointmentExists, setAppointmentExists] = useState(false);
   const [appointmentTime, setAppointmentTime] = useState('');
   const [selectTimeDialog, setSelectTimeDialog] = useState(false);
   const [selectedBarber, setSelectedBarber] = useState({});
@@ -32,6 +34,7 @@ export const MakeAppointmentPage = () => {
       if (res) {
         if(u_info.u_firstname !== res.u_firstname) {
           setU_info(res);
+          setU_id(res.u_id);
         }
       }
     });
@@ -42,7 +45,12 @@ export const MakeAppointmentPage = () => {
         }
       }
     });
-  }, [u_email, u_info, barber_info]);
+    srCheckIfAppointmentRequestExists(u_id).then((res) => {
+      if (res !== false && res !== undefined) {
+        setAppointmentExists(true);
+      }
+    });
+  }, [u_email, u_info, barber_info, u_id]);
   return (
     <>
     <div
@@ -92,8 +100,13 @@ export const MakeAppointmentPage = () => {
                       <button type="button"
                         className={`make-appointment-page__shop__select-barber ${barber.b_status === "available" ? "" : "disable-btn"}`}
                         onClick={() => {
-                          setSelectTimeDialog(!selectTimeDialog);
-                          setSelectedBarber(barber);
+                          if (!appointmentExists) {
+                            setSelectTimeDialog(!selectTimeDialog);
+                            setSelectedBarber(barber);
+                          }
+                          else {
+                            alert("You already have an appointment request");
+                          }
                         }}
                       >
                       {
