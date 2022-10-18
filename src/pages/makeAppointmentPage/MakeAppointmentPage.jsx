@@ -81,40 +81,38 @@ export const MakeAppointmentPage = () => {
                 return null
               }).map((barber) => {
                 return (
-                  <>
-                    <div className="make-appointment-page__shop"
-                      key={barber.b_id}
-                    >
-                      <h4>Shop Info</h4>
-                      <div className="make-appointment-page__shop__info">
-                        <h5>Shop Name: <span>{barber.b_shop_name}</span></h5>
-                        <h5>Barber Name: <span>{barber.u_firstname} {barber.u_lastname}</span></h5>
-                        <h5>Shop Location: <span>{barber.b_city}</span></h5>
-                        <h5>Shop Status: 
-                          <span
-                            style={{
-                              color: barber.b_status === "available" ? "green" : "red"
-                            }}
-                          > {barber.b_status}</span></h5>
-                      </div>
-                      <button type="button"
-                        className={`make-appointment-page__shop__select-barber ${barber.b_status === "available" ? "" : "disable-btn"}`}
-                        onClick={() => {
-                          if (!appointmentExists) {
-                            setSelectTimeDialog(!selectTimeDialog);
-                            setSelectedBarber(barber);
-                          }
-                          else {
-                            alert("You already have an appointment request");
-                          }
-                        }}
-                      >
-                      {
-                        barber.b_status === "available" ? "Select Barber" : "Unavailable"
-                      }
-                      </button>
+                  <div className="make-appointment-page__shop"
+                    key={barber.b_id}
+                  >
+                    <h4>Shop Info</h4>
+                    <div className="make-appointment-page__shop__info">
+                      <h5>Shop Name: <span>{barber.b_shop_name}</span></h5>
+                      <h5>Barber Name: <span>{barber.u_firstname} {barber.u_lastname}</span></h5>
+                      <h5>Shop Location: <span>{barber.b_city}</span></h5>
+                      <h5>Shop Status: 
+                        <span
+                          style={{
+                            color: barber.b_status === "available" ? "green" : "red"
+                          }}
+                        > {barber.b_status}</span></h5>
                     </div>
-                  </>
+                    <button type="button"
+                      className={`make-appointment-page__shop__select-barber ${barber.b_status === "available" ? "" : "disable-btn"}`}
+                      onClick={() => {
+                        if (!appointmentExists) {
+                          setSelectTimeDialog(!selectTimeDialog);
+                          setSelectedBarber(barber);
+                        }
+                        else {
+                          alert("You already have a pending appointment request, please wait for the barber to accept your request.");
+                        }
+                      }}
+                    >
+                    {
+                      barber.b_status === "available" ? "Select Barber" : "Unavailable"
+                    }
+                    </button>
+                  </div>
                 )
               })
             }

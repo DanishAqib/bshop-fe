@@ -31,7 +31,7 @@ export const CartDialog = ({
             }
           </div>
           <div className="selected__services__list__item__total">
-            <h4 className="services__list-item" style={{fontWeight: "bold"}}>Total Price<span>Rs. {totalPrice}</span></h4>
+            <h4 className="services__list-item" style={{fontWeight: "bold"}}>Total Price<span>Rs. {formatePrice(totalPrice)}</span></h4>
           </div>
         </div>
         <div className="cart__dialog__button__container">

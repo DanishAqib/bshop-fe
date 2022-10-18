@@ -35,7 +35,7 @@ export const CustomerDashboard = () => {
             <p>
               Make an appointment with your favorite barber and get your hair cut
               with the best barbers in town.
-              click here to continue.
+              Click here to continue.
             </p>
           </div>
           <div className="card__footer">
@@ -61,16 +61,16 @@ export const CustomerDashboard = () => {
         </div>
         <div className="card">
           <div className="card__header">
-            <h3>Settings</h3>
+            <h3>Appointments History</h3>
           </div>
           <div className="card__body">
             <p>
-              Click here to modify your account settings and update your profile
+              Click here to view all of your previous appointments.
             </p>
           </div>
           <div className="card__footer">
-            <Link to="/settings" state={{ u_info: u_info }}>
-              <button>Settings</button>
+            <Link to="/appointments-history" state={{ u_info: u_info }}>
+              <button>Appointments History</button>
             </Link>
           </div>
         </div>
@@ -80,7 +80,7 @@ export const CustomerDashboard = () => {
           </div>
           <div className="card__body">
             <p>
-              Click here to view your profile and see your details
+              Click here to view your profile and modify your details
             </p>
           </div>
           <div className="card__footer">

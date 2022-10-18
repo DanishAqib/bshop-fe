@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { NavBar } from "../../components/Navbar";
 import { useLocation } from "react-router-dom";
-import { srCancelAppointmentRequest, srGetUserAppointmentRequest, srCheckIfAppointmentRequestExists } from '../../service/srUser';
+import { srRemoveAppointmentRequest, srGetUserAppointmentRequest } from '../../service/srUser';
 import { formatePrice, formateDateAndTime } from "../../shared/utils";
 import "./currentAppointmentPage.css";
 
@@ -30,8 +30,6 @@ export const CurrentAppointmentPage = () => {
     b_shop_name: "",
   });
 
-  const [appointmentExists, setAppointmentExists] = useState(false);
-
   useEffect(() => {
     srGetUserAppointmentRequest(u_info.u_id).then((res) => {
       if (res) {
@@ -40,18 +38,13 @@ export const CurrentAppointmentPage = () => {
         setBarberInfo(res.barber_info);
       }
     });
-    srCheckIfAppointmentRequestExists(u_info.u_id).then((res) => {
-      if (res !== false) {
-        setAppointmentExists(true);
-      }
-    });
   }, [u_info.u_id]);
 
   const cancelAppointment = (uar_id) => {
-    srCancelAppointmentRequest(uar_id).then((res) => {
+    srRemoveAppointmentRequest(uar_id).then((res) => {
       if (res) {
-        setAppointmentExists(false);
         alert("Appointment cancelled");
+        window.location.reload();
       }
     });
   };
@@ -66,7 +59,7 @@ export const CurrentAppointmentPage = () => {
           </div>
           <div className="current-appointment-page__container__body">
             {
-              appointmentExists ? (
+              appointmentRequests.uar_id !== "" ? (
               <div className="page__container__body__card">
               <div className="current-appointment-page__card__details">
                 <div className="current-appointment-page__card__details-info">
@@ -92,7 +85,8 @@ export const CurrentAppointmentPage = () => {
                 <div className="current-appointment-page__card__status__info">
                   <p>status: </p>
                   <h3 style={{
-                    color: (appointmentRequests.uar_status === "pending" || appointmentRequests.uar_status === "rejected") ? "red" : "green"}}
+                    color: appointmentRequests.uar_status === "pending" ? "blue" : appointmentRequests.uar_status === "rejected" ? "red" : "green"
+                  }}
                   >
                     {appointmentRequests.uar_status}
                   </h3>

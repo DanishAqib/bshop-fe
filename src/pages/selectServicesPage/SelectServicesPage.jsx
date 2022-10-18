@@ -8,6 +8,7 @@ import massageImage from "../../assets/images/massage.jpg";
 import groomPackageImage from "../../assets/images/groom.jpeg";
 import hairStylingImage from "../../assets/images/hair_styling.jpg";
 import cartIcon from "../../assets/icons/cart-icon-b.png"
+import { formatePrice } from "../../shared/utils";
 import { FacialServices } from "../../shared/barberServices/FacialServices";
 import { BeardServices } from "../../shared/barberServices/BeardServices";
 import { GroomServices } from "../../shared/barberServices/GroomServices";
@@ -64,7 +65,7 @@ export const SelectServicesPage = () => {
                   />
                   <label style={{marginLeft: "1rem"}} htmlFor={s_id}>{s_name}</label><br/>
                 </div>
-                <span>Rs. {s_price}</span>
+                <span>Rs. {formatePrice(s_price)}</span>
               </div>
             )
           })

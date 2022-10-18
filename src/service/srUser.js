@@ -84,9 +84,18 @@ export const srGetUserAppointmentRequest = async (u_id) => {
   } catch (error) {}
 };
 
-export const srCancelAppointmentRequest = async (uar_id) => {
+export const srRemoveAppointmentRequest = async (uar_id) => {
   try {
     const response = await axios.delete(url + "/cancel_appointment/" + uar_id);
     return response;
+  } catch (error) {}
+};
+
+export const srGetAllUserAppointmentRequests = async (u_id, uar_status) => {
+  try {
+    const response = await axios.get(
+      url + "/all_appointment_requests/" + u_id + "/" + uar_status
+    );
+    return response.data;
   } catch (error) {}
 };

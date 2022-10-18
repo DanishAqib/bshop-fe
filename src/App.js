@@ -9,6 +9,8 @@ import { MakeAppointmentPage } from "./pages/makeAppointmentPage/MakeAppointment
 import { CurrentAppointmentPage } from "./pages/currentAppointmentPage/CurrentAppointmentPage";
 import { ConfirmAppointmentPage } from "./pages/confirmAppointmentPage/ConfirmAppointmentPage";
 import { SelectServicesPage } from "./pages/selectServicesPage/SelectServicesPage";
+import { AppointmentsHistoryPage } from "./pages/appointmentsHistoryPage/AppointmentsHistoryPage";
+import { BarberCurrentAppointmentPage } from "./pages/barberCurrentAppointmentPage/BarberCurrentAppointmentPage";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
@@ -24,6 +26,14 @@ function App() {
       <Route path="/select-services" element={<SelectServicesPage />} />
       <Route path="/current-appointment" element={<CurrentAppointmentPage />} />
       <Route path="/confirm-appointment" element={<ConfirmAppointmentPage />} />
+      <Route
+        path="/barber-current-appointment"
+        element={<BarberCurrentAppointmentPage />}
+      />
+      <Route
+        path="/appointments-history"
+        element={<AppointmentsHistoryPage />}
+      />
     </Routes>
   );
 }

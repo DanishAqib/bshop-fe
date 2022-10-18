@@ -1,0 +1,105 @@
+.current-appointment-page__card__status-info{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  text-transform: capitalize;
+}
+
+.current-appointment-page__card__status-button{
+  background: rgb(32, 155, 255);
+}
+
+.barber-current-appointment-page__container__body{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 2rem;
+  width: 90%;
+  height: 70%;
+  padding: 1rem;
+}
+
+.barber-current-appointment-page__container__body::-webkit-scrollbar {
+  width: 7px;
+}
+
+.barber-current-appointment-page__container__body::-webkit-scrollbar-track {
+  background: #f1f1f193;
+}
+
+.barber-current-appointment-page__container__body::-webkit-scrollbar-thumb {
+  background: #9c741e;
+  border-radius: 10px;
+}
+
+.change-apt-status-dialog{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  width: 30rem;
+  height: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 100;
+}
+
+.change-apt-status-dialog__container{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.change-apt-status-dialog__container__header{
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: rgb(43, 43, 43);
+  text-decoration: none;
+}
+
+.change-apt-status-dialog__container__body{
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.change-apt-status-dialog__container__footer{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.change-apt-status-dialog__container__footer button{
+  width: 30%;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.change-apt-status-dialog__container__body select{
+  margin-top: 10px;
+  width: max-content;
+  height: 2.5rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgb(204, 204, 204);
+  cursor: pointer;
+  color: rgb(43, 43, 43);
+  outline: none;
+}
