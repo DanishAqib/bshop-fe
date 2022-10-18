@@ -7,19 +7,77 @@
 .bodyContainer
 {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
   position: relative;
   top:5rem;
   justify-content: space-around;
-  height: 300px;
-  padding-top: 80px;
+  height: 70vh;
+  gap: 2rem;
+}
+
+.bodyContainer__left{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex:1;
+}
+
+.bodyContainer__left h2{
+  font-size: 3rem;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  margin: 0;
+}
+
+.bodyContainer__left h2::after{
+  content: "";
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(to right, #68680c 0%, #dddcd7 24%, #e2c9cc 30%, #e7627d 46%, #b8235a 59%, #801357 71%, #8d1775 100%);
+}
+
+.bodyContainer__left p{
+  font-size: 1.5rem;
+  color: rgb(255, 255, 255);
+  font-weight: 400;
+  margin: 2rem;
+}
+
+.bodyContainer__left p::after{
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background-color: #fff;
+  transition: width .3s;
+}
+
+.bodyContainer__left p:hover::after{
+  width: 100%;
+}
+
+h2 span{
+  color: #9c741e;
+}
+
+.bodyContainer__right{
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 1rem
 }
 
 .logoCard{
   text-align: center;
-  width: 400px;
-  height: 500px;
+  width: 300px;
+  height: 400px;
   background-image: linear-gradient(to top, #c4c5c7 0%, #dcdddf 52%, #ebebeb 100%);
   border-radius: 15px;
   display: flex;
@@ -38,8 +96,8 @@
 }
 
 .logoCard img{
-  width: 370px;
-  height: 360px;
+  width: 270px;
+  height: 260px;
 }
 
 .logoCard a{

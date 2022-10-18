@@ -32,6 +32,21 @@
   cursor: pointer;
 }
 
+.navbar__logo::after{
+  content: "";
+  display: block;
+  width: 0;
+  height: 5px;
+  position: relative;
+  top: -40px;
+  background: linear-gradient(to right, #68680c 0%, #e7627d 46%, #b8235a 59%, #801357 71%, #8d1775 100%);
+  transition: width .3s;
+}
+
+.navbar__logo:hover::after{
+  width: 100%;
+}
+
 @media screen and (max-width: 529px) {
   .navbar__logo{
     display: none;
@@ -85,7 +100,6 @@
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
-  /* add shadow */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
@@ -105,66 +119,6 @@
   .dasboard__container {
     overflow-y: scroll;
   }
-}
-
-.card{
-  width: 600px;
-  height: 300px;
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 10px;
-  margin: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  transition: all 0.3s ease;
-}
-
-.card:hover{
-  transform: scale(1.05);
-}
-
-.card__header{
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.card__header h3{
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: rgb(43, 43, 43);
-  text-decoration: none;
-}
-
-.card__body{
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.card__body p{
-  font-size: 1.2rem;
-  color: rgb(22, 22, 22);
-  text-decoration: none;
-  line-height: 1.5;
-}
-
-.card__footer button{
-  background-color: #9c741e;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  font-size: 14px;
-  color: #fff;
-  font-weight: 600;
-  text-transform: uppercase;
-  margin-top: 15px;
-  transition: all 0.3s ease;
 }
 
 .status-dialog{

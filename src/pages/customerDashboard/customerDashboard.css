@@ -76,7 +76,6 @@
   margin-top: 60px;
 }
 
-/* style dashboard container scroll */
 .dasboard__container::-webkit-scrollbar {
   width: 8px;
 }
