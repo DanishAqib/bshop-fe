@@ -21,7 +21,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem
+    gap: 1rem;
 }
 
 .title{
@@ -34,10 +34,11 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    width: 100%;
 }
 
 .input{
-    width: 100%;
+    width: 2rem;
     height: 2rem;
     border: 1px solid #46330a;
     border-radius: 5px;
@@ -53,7 +54,7 @@
 }
 
 button{
-    width: 107%;
+    width: 100%;
     height: 2.5rem;
     border: none;
     border-radius: 0.5rem;
@@ -73,10 +74,29 @@ button:active{
     scale: 0.95;
 }
 
+.loginButton{
+    width: 100%;
+}
+
 a{
     text-decoration: none;
 }
 
 p{
     margin-left: 0.6rem;
+}
+
+.loginForm__form{
+    width: 80%;
+}
+
+.forgotPass{
+    text-decoration: none;
+    color: #0244c0;
+    font-size: 0.9rem;
+}
+
+.forgot-pass-link{
+    text-align: right;
+    margin-top: -0.6rem;
 }

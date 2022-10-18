@@ -60,16 +60,19 @@ export const LoginPage = () => {
               })
             }}
           >
-            <Form.Group className="inputGrp" controlId="formBasicEmail">
+            <Form.Group className="inputGrp" style={{width: "95%"}} controlId="formBasicEmail">
               <Form.Control className="input" name='u_email' type="email" required placeholder="Enter email" value={userCredentials.u_email}
                 onChange={onInputChange}
               />
             </Form.Group>
-            <Form.Group className="inputGrp" controlId="formBasicPassword">
+            <Form.Group className="inputGrp" style={{width: "95%"}} controlId="formBasicPassword">
               <Form.Control className="input" name="u_password" type="password" required placeholder="Enter Password" value={userCredentials.u_password}
                 onChange={onInputChange}
               />
             </Form.Group>
+            <div className="forgot-pass-link">
+              <Link to="/reset-password" state={{isBarber}} className="forgotPass">Forgot Password?</Link>
+            </div>
             <Button className="loginButton" variant="primary" type="submit">
               Submit
             </Button>

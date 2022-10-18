@@ -2,6 +2,7 @@ import "./App.css";
 import { LandingPage } from "./pages/landingPage/LandingPage";
 import { LoginPage } from "./pages/loginPage/LoginPage";
 import { SignupPage } from "./pages/signupPage/SignupPage";
+import { ResetPasswordPage } from "./pages/resetPasswordPage/ResetPasswordPage";
 import { BarberDashboard } from "./pages/barberDashboard/BarberDashboard";
 import { CustomerDashboard } from "./pages/customerDashboard/CustomerDashboard";
 import { SettingsPage } from "./pages/settingsPage/SettingsPage";
@@ -19,6 +20,7 @@ function App() {
       <Route path="/" exact element={<LandingPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignupPage />} />
+      <Route path="/reset-password" element={<ResetPasswordPage />} />
       <Route path="/barber-dashboard" element={<BarberDashboard />} />
       <Route path="/customer-dashboard" element={<CustomerDashboard />} />
       <Route path="/settings" element={<SettingsPage />} />

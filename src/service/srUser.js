@@ -35,6 +35,16 @@ export const createUser = async ({
   } catch (error) {}
 };
 
+export const srUpdateUserPassword = async (u_email, u_password) => {
+  try {
+    const response = await axios.put(url + "/update_password", {
+      u_email,
+      u_password,
+    });
+    return response;
+  } catch (error) {}
+};
+
 export const srGetUserInfo = async (u_email) => {
   try {
     const response = await axios.get(url + "/get_user_info/" + u_email);
