@@ -17,7 +17,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2.5rem;
 }
 
 .settings-page__container__left{
@@ -29,8 +28,8 @@
   min-width: 7rem;
 }
 
-.input{
-  min-width: 10rem;
+.settings-input{
+  width: 100%;
 }
 
 .edit-form{
@@ -38,7 +37,6 @@
   flex-direction: row;
 }
 
-/* edit form flex d column if screen width reaches 640px */
 @media screen and (max-width: 640px) {
   .edit-form{
     flex-direction: column;

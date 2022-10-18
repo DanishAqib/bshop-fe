@@ -4,6 +4,8 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import bookBarberLogo from '../../assets/images/book barber.png'
 import { createUser } from "../../service/srUser"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './signupPage.css'
 
 export const SignupPage = () => {
@@ -34,7 +36,9 @@ export const SignupPage = () => {
 
   const checkIfPasswordsMatch = () => {
     if (userInfo.u_password !== userInfo.u_cPassword) {
-      alert("Passwords do not match")
+      toast.error('Passwords do not match !', {
+        position: toast.POSITION.TOP_CENTER
+      })
       return false
     }
     return true
@@ -42,7 +46,9 @@ export const SignupPage = () => {
 
   const onSignupFormSubmit = (res) => {
     if (!res) {
-      alert("Email Already Exists")
+      toast.error('Email Already Exists !', {
+        position: toast.POSITION.TOP_CENTER
+      })
     }
     else if (res.data.u_role === "barber") {
       navigate("/barber-dashboard", { state: { u_email: userInfo.u_email } })
@@ -139,6 +145,7 @@ export const SignupPage = () => {
           <img src={bookBarberLogo} alt="book barber logo" />
         </div>
       </div>
+      <ToastContainer />
     </>
   )
 }

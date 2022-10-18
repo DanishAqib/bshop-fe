@@ -1,3 +1,6 @@
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export const ChangeAppointmentStatusDialog = ({
   openStatusChangeDialog,
   setOpenStatusChangeDialog,
@@ -7,6 +10,8 @@ export const ChangeAppointmentStatusDialog = ({
   setIsValueSelected,
   updateAppointmentRequestStatus,
   selectedAptId,
+  customerName,
+  setCustomerName,
 }) => {
   return (
     <>
@@ -35,6 +40,9 @@ export const ChangeAppointmentStatusDialog = ({
               }}
               onClick={() => {
                 updateAppointmentRequestStatus(selectedAptId, statusValue);
+                toast.success(`Appointment with ${customerName} set to ${statusValue}`, {
+                  position: "top-center",
+                });
                 setOpenStatusChangeDialog(false);
               }}
             >Update</button>
@@ -46,6 +54,7 @@ export const ChangeAppointmentStatusDialog = ({
                 setOpenStatusChangeDialog(!openStatusChangeDialog);
                 setIsValueSelected(false);
                 setStatusValue(null);
+                setCustomerName("");
               }}
             >Cancel</button>
           </div>

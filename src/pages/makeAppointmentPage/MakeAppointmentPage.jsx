@@ -4,6 +4,8 @@ import { useLocation } from "react-router-dom";
 import { srGetUserInfo, srCheckIfAppointmentRequestExists } from '../../service/srUser';
 import { srGetAllBarbers } from '../../service/srBarber';
 import { SelectTimeDialog } from '../../components/SelectTimeDialog';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "./makeAppointmentPage.css";
 
 export const MakeAppointmentPage = () => {
@@ -104,7 +106,9 @@ export const MakeAppointmentPage = () => {
                           setSelectedBarber(barber);
                         }
                         else {
-                          alert("You already have a pending appointment request, please wait for the barber to accept your request.");
+                          toast.warning("You already have an appointment request pending. Please wait.",{
+                            position: "top-center",
+                          });
                         }
                       }}
                     >
@@ -133,6 +137,7 @@ export const MakeAppointmentPage = () => {
         setSelectedBarber={setSelectedBarber}
       />
     }
+    <ToastContainer />
   </>
   );
 }

@@ -3,6 +3,8 @@ import { useLocation, Link } from "react-router-dom";
 import "./barberDashboard.css";
 import { srGetUserInfo } from "../../service/srUser";
 import { StatusDialog } from '../../components/StatusDialog';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { NavBar } from '../../components/Navbar';
 
 export const BarberDashboard = () => {
@@ -32,69 +34,75 @@ export const BarberDashboard = () => {
     >
       <NavBar u_info={u_info} />
       <div className="dasboard__container">
-        <div className="card">
-          <div className="card__header">
-            <h3>Appointment Requests</h3>
-          </div>
-          <div className="card__body">
-            <p>
-              Click here to see appointments requested by customers to you and confirm them.
-            </p>
-          </div>
-          <div className="card__footer">
-            <Link to="/confirm-appointment" state={{ u_info: u_info }}>
-              <button>Confirm an Appointment</button>
-            </Link>
-          </div>
+        <div className="dashboard__container-header">
+          <h1>Barber Dashboard</h1>
         </div>
-        <div className="card">
-          <div className="card__header">
-            <h3>View Current Appointment</h3>
+        <div className="dashboard__container-body">
+          <div className="card">
+            <div className="card__header">
+              <h3>Appointment Requests</h3>
+            </div>
+            <div className="card__body">
+              <p>
+                Click here to see appointments requested by customers to you and confirm them.
+              </p>
+            </div>
+            <div className="card__footer">
+              <Link to="/confirm-appointment" state={{ u_info: u_info }}>
+                <button>Confirm an Appointment</button>
+              </Link>
+            </div>
           </div>
-          <div className="card__body">
-            <p>
-              View your current appointment with customer.
-            </p>
+          <div className="card">
+            <div className="card__header">
+              <h3>View Current Appointment</h3>
+            </div>
+            <div className="card__body">
+              <p>
+                Click here to view your current appointment status with customers.
+              </p>
+            </div>
+            <div className="card__footer">
+              <Link to="/barber-current-appointment" state={{ u_info: u_info }}>
+                <button>View Current Appointment</button>
+              </Link>
+            </div>
           </div>
-          <div className="card__footer">
-            <Link to="/barber-current-appointment" state={{ u_info: u_info }}>
-              <button>View Current Appointment</button>
-            </Link>
+          <div className="card">
+            <div className="card__header">
+              <h3>Settings</h3>
+            </div>
+            <div className="card__body">
+              <p>
+                Click here to modify your account settings and update your profile
+              </p>
+            </div>
+            <div className="card__footer">
+              <Link to="/settings" state={{ u_info: u_info }} >
+                <button>Settings</button>
+              </Link>
+            </div>
           </div>
-        </div>
-        <div className="card">
-          <div className="card__header">
-            <h3>Settings</h3>
-          </div>
-          <div className="card__body">
-            <p>
-              Click here to modify your account settings and update your profile
-            </p>
-          </div>
-          <div className="card__footer">
-            <Link to="/settings" state={{ u_info: u_info }} >
-              <button>Settings</button>
-            </Link>
-          </div>
-        </div>
-        <div className="card">
-          <div className="card__header">
-            <h3>Update Status</h3>
-          </div>
-          <div className="card__body">
-            <p>
-              Click here to modify your profile status to let customers know if you are available or not.
-            </p>
-          </div>
-          <div className="card__footer">
-            <button
-              onClick={() => setOpenStatusChangeDialog(true)}
-            >Change Status</button>
+          <div className="card">
+            <div className="card__header">
+              <h3>Update Status</h3>
+            </div>
+            <div className="card__body">
+              <p>
+                Click here to modify your profile status to let customers know if you are available or not.
+              </p>
+            </div>
+            <div className="card__footer">
+              <button
+                onClick={() => setOpenStatusChangeDialog(true)}
+              >Change Status</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
     {openStatusChangeDialog && <StatusDialog setOpenStatusChangeDialog={setOpenStatusChangeDialog} u_id={u_info.u_id} />}
+    <ToastContainer />
     </>
   )
 };

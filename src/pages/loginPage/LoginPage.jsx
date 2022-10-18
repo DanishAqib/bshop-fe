@@ -4,6 +4,8 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import bookBarberLogo from '../../assets/images/book barber.png'
 import { validateUser } from "../../service/srUser"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './loginPage.css'
 
 export const LoginPage = () => {
@@ -27,7 +29,9 @@ export const LoginPage = () => {
 
   const onLoginFormSubmit = (res) => {
     if (!res) {
-      alert("Invalid Credentials")
+      toast.error('Invalid credentials !', {
+        position: toast.POSITION.TOP_CENTER
+      })
     }
     else if (res === "barber") {
       navigate("/barber-dashboard", { state: { u_email: userCredentials.u_email } })
@@ -60,12 +64,12 @@ export const LoginPage = () => {
               })
             }}
           >
-            <Form.Group className="inputGrp" style={{width: "95%"}} controlId="formBasicEmail">
+            <Form.Group className="inputGrp" controlId="formBasicEmail">
               <Form.Control className="input" name='u_email' type="email" required placeholder="Enter email" value={userCredentials.u_email}
                 onChange={onInputChange}
               />
             </Form.Group>
-            <Form.Group className="inputGrp" style={{width: "95%"}} controlId="formBasicPassword">
+            <Form.Group className="inputGrp" controlId="formBasicPassword">
               <Form.Control className="input" name="u_password" type="password" required placeholder="Enter Password" value={userCredentials.u_password}
                 onChange={onInputChange}
               />
@@ -83,6 +87,7 @@ export const LoginPage = () => {
           <img src={bookBarberLogo} alt="book barber logo" />
         </div>
       </div>
+      <ToastContainer/>
     </>
   )
 }

@@ -1,102 +1,106 @@
-.container{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
-    background-image: url("../../assets/images/background.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;
-    background-size: cover;
+.container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-image: url("../../assets/images/background.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
-.loginForm{
-    width: 30%;
-    height: 50%;
-    background-color: rgba(255, 255, 255, 0.918);
-    border-radius: 10px;
-    box-shadow: 2px 1px 20px rgba(0, 0, 0, 1);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+.loginForm {
+  min-width: 30%;
+  min-height: 50%;
+  background-color: rgba(255, 255, 255, 0.918);
+  border-radius: 10px;
+  box-shadow: 2px 1px 20px rgba(0, 0, 0, 1);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
-.title{
-    font-size: 2rem;
-    font-weight: 600;
-    color: #46330a;
+.title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #46330a;
 }
 
-.inputGrp{
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    width: 100%;
+.inputGrp {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  height: max-content;
+  overflow: hidden;
 }
 
-.input{
-    width: 2rem;
-    height: 2rem;
-    border: 1px solid #46330a;
-    border-radius: 5px;
-    padding: 0 0.5rem;
-    margin-bottom: 1rem;
-    transition: all 0.3s ease;
-    outline: none;
-    border: 1px solid #46330a;
+.input {
+  height: 2rem;
+  border: 1px solid #46330a;
+  border-radius: 5px;
+  padding: 0 0.5rem;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+  outline: none;
+  border: 1px solid #46330a;
 }
 
-.input:focus{
-    box-shadow: 0 0 10px #523d1163;
+.input:focus {
+  box-shadow: 0 0 10px #523d1163;
 }
 
-button{
-    width: 100%;
-    height: 2.5rem;
-    border: none;
-    border-radius: 0.5rem;
-    background-color: #9c741e;
-    color: #fff;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-bottom: 1rem;
+button {
+  width: 100%;
+  height: 2.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #9c741e;
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+  margin-top: 2.5rem;
 }
 
-button:hover{
-    opacity: 0.8;
+button:hover {
+  opacity: 0.8;
 }
 
-button:active{
-    scale: 0.95;
+button:active {
+  scale: 0.95;
 }
 
-.loginButton{
-    width: 100%;
+a {
+  text-decoration: none;
 }
 
-a{
-    text-decoration: none;
+p {
+  margin-left: 0.6rem;
 }
 
-p{
-    margin-left: 0.6rem;
+.loginForm__form {
+  width: 80%;
 }
 
-.loginForm__form{
-    width: 80%;
+.forgotPass {
+  text-decoration: none;
+  color: #0244c0;
+  font-size: 0.9rem;
 }
 
-.forgotPass{
-    text-decoration: none;
-    color: #0244c0;
-    font-size: 0.9rem;
+.forgot-pass-link {
+  text-align: right;
+  margin-top: -0.6rem;
 }
 
-.forgot-pass-link{
-    text-align: right;
-    margin-top: -0.6rem;
+@media screen and (max-width: 830px) {
+  .bookBarberLogo {
+    display: none;
+  }
 }

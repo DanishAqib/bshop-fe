@@ -27,66 +27,69 @@ export const CustomerDashboard = () => {
     <div className='dashboard'>
       <NavBar u_info={u_info} />
       <div className="dasboard__container">
-        <div className="card">
-          <div className="card__header">
-            <h3>Make an Appointment</h3>
-          </div>
-          <div className="card__body">
-            <p>
-              Make an appointment with your favorite barber and get your hair cut
-              with the best barbers in town.
-              Click here to continue.
-            </p>
-          </div>
-          <div className="card__footer">
-            <Link to="/make-appointment" state={{ u_info: u_info }}>
-              <button>Make an Appointment</button>
-            </Link>
-          </div>
+        <div className="dashboard__container-header">
+          <h1>Customer Dashboard</h1>
         </div>
-        <div className="card">
-          <div className="card__header">
-            <h3>View Current Appointment</h3>
+        <div className="dashboard__container-body">
+          <div className="card">
+            <div className="card__header">
+              <h3>Make an Appointment</h3>
+            </div>
+            <div className="card__body">
+              <p>
+                Click here to make an appointment with your favorite barber.
+              </p>
+            </div>
+            <div className="card__footer">
+              <Link to="/make-appointment" state={{ u_info: u_info }}>
+                <button>Make an Appointment</button>
+              </Link>
+            </div>
           </div>
-          <div className="card__body">
-            <p>
-              View your current appointment with barber
-            </p>
+          <div className="card">
+            <div className="card__header">
+              <h3>View Current Appointment</h3>
+            </div>
+            <div className="card__body">
+              <p>
+                Click here to view your current appointments status with barber.
+              </p>
+            </div>
+            <div className="card__footer">
+              <Link to="/current-appointment" state={{ u_info: u_info }}>
+                <button>View Current Appointment</button>
+              </Link>
+            </div>
           </div>
-          <div className="card__footer">
-            <Link to="/current-appointment" state={{ u_info: u_info }}>
-              <button>View Current Appointment</button>
-            </Link>
+          <div className="card">
+            <div className="card__header">
+              <h3>Appointments History</h3>
+            </div>
+            <div className="card__body">
+              <p>
+                Click here to view all of your previous appointments.
+              </p>
+            </div>
+            <div className="card__footer">
+              <Link to="/appointments-history" state={{ u_info: u_info }}>
+                <button>Appointments History</button>
+              </Link>
+            </div>
           </div>
-        </div>
-        <div className="card">
-          <div className="card__header">
-            <h3>Appointments History</h3>
-          </div>
-          <div className="card__body">
-            <p>
-              Click here to view all of your previous appointments.
-            </p>
-          </div>
-          <div className="card__footer">
-            <Link to="/appointments-history" state={{ u_info: u_info }}>
-              <button>Appointments History</button>
-            </Link>
-          </div>
-        </div>
-        <div className="card">
-          <div className="card__header">
-            <h3>View My Profile</h3>
-          </div>
-          <div className="card__body">
-            <p>
-              Click here to view your profile and modify your details
-            </p>
-          </div>
-          <div className="card__footer">
-            <Link to="/settings" state={{ u_info: u_info }}>
-              <button>View My Profile</button>
-            </Link>
+          <div className="card">
+            <div className="card__header">
+              <h3>View My Profile</h3>
+            </div>
+            <div className="card__body">
+              <p>
+                Click here to view your profile and modify your details
+              </p>
+            </div>
+            <div className="card__footer">
+              <Link to="/settings" state={{ u_info: u_info }}>
+                <button>View My Profile</button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

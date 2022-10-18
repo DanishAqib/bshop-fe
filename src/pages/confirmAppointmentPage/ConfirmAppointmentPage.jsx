@@ -3,6 +3,8 @@ import { useLocation } from "react-router-dom";
 import { NavBar } from "../../components/Navbar";
 import { srGetAllAppointmentRequestsForBarber, srUpdateAppointmentRequestStatus } from "../../service/srBarber";
 import { formatePrice, formateDateAndTime } from "../../shared/utils";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "./confirmAppointmentPage.css";
 
 export const ConfirmAppointmentPage = () => {
@@ -12,21 +14,7 @@ export const ConfirmAppointmentPage = () => {
     window.location.href = "/";
   }
 
-  const [appointmentRequests, setAppointmentRequests] = useState([
-    {
-      uar_id: "",
-      uar_services: "",
-      uar_time: "",
-      uar_total_price: "",
-      uar_status: "",
-      uar_created_at: "",
-      users_info: {
-        u_id: "",
-        u_firstname: "",
-        u_lastname: "",
-      },
-    }
-  ]);
+  const [appointmentRequests, setAppointmentRequests] = useState([]);
   
   useEffect(()=>{
     srGetAllAppointmentRequestsForBarber(u_info.u_id, "pending").then((res)=>{
@@ -34,13 +22,13 @@ export const ConfirmAppointmentPage = () => {
         setAppointmentRequests(res);
       }
     })
-  },[u_info.u_id]);
+  },[u_info.u_id, appointmentRequests]);
 
   const updateAppointmentRequestStatus = (uar_id, status) => {
     srUpdateAppointmentRequestStatus(uar_id, status).then((res)=>{
       if(res){
-        alert("Appointment status updated");
-        window.location.reload();
+        const newAppointmentRequests = appointmentRequests.filter((item)=>item.uar_id !== uar_id);
+        setAppointmentRequests(newAppointmentRequests);
       }
     })
   }
@@ -58,7 +46,7 @@ export const ConfirmAppointmentPage = () => {
               overflowY: appointmentRequests.length > 1 ? "scroll" : "hidden",
             }}
           >
-            { appointmentRequests[0].uar_id !== "" ? (
+            { appointmentRequests.length > 0 ? (
                 appointmentRequests.map((appointmentRequest, index)=>{
                   const { uar_id, uar_services, uar_time, uar_total_price, uar_status, uar_created_at, users_info } = appointmentRequest;
                   const { u_firstname, u_lastname } = users_info;
@@ -90,10 +78,20 @@ export const ConfirmAppointmentPage = () => {
                         </div>
                         <div className="confirm-appointment-page__card__status__btns">
                           <button className="confirm__appointment-btn"
-                            onClick={()=>updateAppointmentRequestStatus(uar_id, "approved")}
+                            onClick={()=>{
+                              updateAppointmentRequestStatus(uar_id, "approved")
+                              toast.success(`Appointment with ${u_firstname} ${u_lastname} approved!`, {
+                                position: "top-right",
+                              })
+                            }}
                           >Confirm</button>
                           <button className="reject__appointment-btn"
-                            onClick={()=>updateAppointmentRequestStatus(uar_id, "rejected")}
+                            onClick={()=>{
+                              updateAppointmentRequestStatus(uar_id, "rejected")
+                              toast.error(`Appointment with ${u_firstname} ${u_lastname} rejected!`, {
+                                position: "top-right",
+                              })
+                            }}
                           >Reject</button>
                         </div>
                       </div>
@@ -116,6 +114,7 @@ export const ConfirmAppointmentPage = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   )
 };

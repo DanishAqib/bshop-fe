@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { updateBarberStatus } from '../service/srBarber';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const StatusDialog = ({setOpenStatusChangeDialog, u_id}) => {
   const [statusValue, setStatusValue] = useState();
@@ -44,7 +46,10 @@ export const StatusDialog = ({setOpenStatusChangeDialog, u_id}) => {
             }}
             onClick={() => {
               updateBarberStatus(u_id, statusValue);
-              alert("Status Updated");
+              toast.success(`Status updated to ${statusValue}`, {
+                position: toast.POSITION.TOP_RIGHT,
+                autoClose: 2500,
+              });
               setOpenStatusChangeDialog(false);
             }}
           >Update</button>

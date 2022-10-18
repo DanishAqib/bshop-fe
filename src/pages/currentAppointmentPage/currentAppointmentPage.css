@@ -27,7 +27,6 @@
 }
 
 .current-appointment-page__container__body{
-  margin-top: 2rem;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -35,8 +34,21 @@
   justify-content: flex-start;
   gap: 2rem;
   width: 90%;
-  height: 80%;
+  height: 70%;
   padding: 1rem;
+}
+
+.current-appointment-page__container__body::-webkit-scrollbar {
+  width: 7px;
+}
+
+.current-appointment-page__container__body::-webkit-scrollbar-track {
+  background: #f1f1f193;
+}
+
+.current-appointment-page__container__body::-webkit-scrollbar-thumb {
+  background: #9c741e;
+  border-radius: 10px;
 }
 
 .current-appointment-page__container__body__card{

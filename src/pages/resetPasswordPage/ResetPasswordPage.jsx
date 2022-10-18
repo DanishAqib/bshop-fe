@@ -50,7 +50,7 @@ export const ResetPasswordPage = () => {
       >
         <div className="resetPasswordForm">
           <h4 className="title">Reset Password</h4>
-          <Form 
+          <Form style={{ width: '50%' }}
             onSubmit={(e) => {
               e.preventDefault();
               if (checkIfPasswordsMatch()) {

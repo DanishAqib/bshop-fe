@@ -5,6 +5,8 @@ import { NavBar } from '../../components/Navbar';
 import { srGetBarberInfo } from '../../service/srBarber';
 import { srGetUserInfo } from '../../service/srUser';
 import { srUpdateUserInfo } from '../../service/srUser';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "./settingsPage.css";
 
 export const SettingsPage = () => {
@@ -65,7 +67,7 @@ export const SettingsPage = () => {
               >
                 <Form.Group className="inputGrp edit-form" controlId="formBasicFname">
                   <Form.Label className='form-label'>First Name</Form.Label>
-                  <Form.Control className="input" name="u_firstname" type="text" placeholder={u_info.u_firstname} disabled={!isInEditMode}
+                  <Form.Control className="settings-input input" name="u_firstname" type="text" placeholder={u_info.u_firstname} disabled={!isInEditMode}
                     defaultValue={u_info.u_firstname}
                     onChange={(e) => {
                       u_info.u_firstname = e.target.value;
@@ -74,7 +76,7 @@ export const SettingsPage = () => {
                 </Form.Group>
                 <Form.Group className="inputGrp edit-form" controlId="formBasicLname">
                   <Form.Label className='form-label'>Last Name</Form.Label>
-                  <Form.Control className="input" name="u_lastname" type="text" placeholder={u_info.u_lastname} disabled={!isInEditMode}
+                  <Form.Control className="settings-input input" name="u_lastname" type="text" placeholder={u_info.u_lastname} disabled={!isInEditMode}
                     defaultValue={u_info.u_lastname}
                     onChange={(e) => {
                       u_info.u_lastname = e.target.value;
@@ -86,7 +88,7 @@ export const SettingsPage = () => {
                     <>
                       <Form.Group className="inputGrp edit-form" controlId="formBasicLocation">
                         <Form.Label className='form-label'>Location</Form.Label>
-                        <Form.Control style={{textTransform: "capitalize"}} className="input" name="u_location" type="text" placeholder={u_info.b_city} disabled={!isInEditMode}
+                        <Form.Control style={{textTransform: "capitalize"}} className="settings-input input" name="u_location" type="text" placeholder={u_info.b_city} disabled={!isInEditMode}
                           defaultValue={b_city}
                           onChange={(e) => {
                             setB_city(e.target.value);
@@ -95,7 +97,7 @@ export const SettingsPage = () => {
                       </Form.Group>
                       <Form.Group className="inputGrp edit-form" controlId="formBasicShopName">
                         <Form.Label className='form-label'>Shop Name</Form.Label>
-                        <Form.Control style={{textTransform: "capitalize"}} className="input" name="b_shop_name" type="text" placeholder={u_info.b_shop_name} disabled={!isInEditMode}
+                        <Form.Control style={{textTransform: "capitalize"}} className="settings-input input" name="b_shop_name" type="text" placeholder={u_info.b_shop_name} disabled={!isInEditMode}
                           defaultValue={b_shop_name}
                           onChange={(e) => {
                             setB_shop_name(e.target.value);
@@ -107,7 +109,7 @@ export const SettingsPage = () => {
                 }
                 <Form.Group className="inputGrp edit-form" controlId="formBasicPassword">
                   <Form.Label className='form-label'>Password</Form.Label>
-                  <Form.Control className="input" name="u_password" type="password" placeholder="Password" disabled={!isInEditMode}
+                  <Form.Control className="settings-input input" name="u_password" type="password" placeholder="Password" disabled={!isInEditMode}
                     defaultValue={u_info.u_password}
                     onChange={(e) => {
                       u_info.u_password = e.target.value;
@@ -123,7 +125,14 @@ export const SettingsPage = () => {
                         b_shop_name: b_shop_name,
                       }}).then((res) => {
                         if (res) {
-                          window.location.reload();
+                          setU_info({
+                            ...u_info,
+                            b_city: b_city,
+                            b_shop_name: b_shop_name,
+                          });
+                          toast.success("Profile updated successfully!", {
+                            position: "top-center",
+                          });
                         }
                       });
                     }
@@ -145,6 +154,7 @@ export const SettingsPage = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   )
 };

@@ -4,6 +4,8 @@ import { useLocation } from "react-router-dom";
 import { srGetAllAppointmentRequestsForBarber, srUpdateAppointmentRequestStatus } from "../../service/srBarber";
 import { ChangeAppointmentStatusDialog } from "../../components/ChangeAppointmentStatusDialog";
 import { formatePrice } from "../../shared/utils";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "./barberCurrentAppointmentPage.css";
 
 export const BarberCurrentAppointmentPage = () => {
@@ -16,24 +18,12 @@ export const BarberCurrentAppointmentPage = () => {
   const [statusValue, setStatusValue] = useState();
   const [isValueSelected, setIsValueSelected] = useState(false);
   const [selectedAptId, setSelectedAptId] = useState();
-  const [appointmentRequests, setAppointmentRequests] = useState([
-    {
-      uar_id: "",
-      uar_services: "",
-      uar_time: "",
-      uar_total_price: "",
-      uar_status: "",
-      users_info: {
-        u_id: "",
-        u_firstname: "",
-        u_lastname: "",
-      },
-    }
-  ]);
+  const [appointmentRequests, setAppointmentRequests] = useState([]);
+  const [customerName, setCustomerName] = useState("");
 
   useEffect(()=>{
     srGetAllAppointmentRequestsForBarber(u_info.u_id, "approved").then((res)=>{
-      if(res.length > 0){
+      if((res && res.length > 0) && res !== undefined){
         setAppointmentRequests(res);
       }
     })
@@ -42,7 +32,8 @@ export const BarberCurrentAppointmentPage = () => {
   const updateAppointmentRequestStatus = (uar_id, status) => {
     srUpdateAppointmentRequestStatus(uar_id, status).then((res)=>{
       if(res){
-        window.location.reload();
+        const newAppointmentRequests = appointmentRequests.filter((item)=>item.uar_id !== uar_id);
+        setAppointmentRequests(newAppointmentRequests);
       }
     })
   }
@@ -63,7 +54,7 @@ export const BarberCurrentAppointmentPage = () => {
             }}
           >
           {
-            appointmentRequests[0].uar_id !== "" ? (
+            appointmentRequests.length > 0 ? (
               appointmentRequests.map((appointmentRequest, index) => {
                 const { uar_id, uar_services, uar_time, uar_total_price, uar_status, users_info } = appointmentRequest;
                 const { u_firstname, u_lastname } = users_info;
@@ -96,6 +87,7 @@ export const BarberCurrentAppointmentPage = () => {
                         onClick={() => {
                           setOpenStatusChangeDialog(!openStatusChangeDialog);
                           setSelectedAptId(uar_id);
+                          setCustomerName(`${u_firstname} ${u_lastname}`);
                         }}
                       >Change Status</button>
                     </div>
@@ -129,8 +121,11 @@ export const BarberCurrentAppointmentPage = () => {
             setIsValueSelected={setIsValueSelected}
             updateAppointmentRequestStatus={updateAppointmentRequestStatus}
             selectedAptId={selectedAptId}
+            customerName={customerName}
+            setCustomerName={setCustomerName}
           />
       )}
+      <ToastContainer />
     </>
   )
 };

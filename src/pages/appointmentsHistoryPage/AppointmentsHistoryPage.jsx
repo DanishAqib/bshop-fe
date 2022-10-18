@@ -3,6 +3,8 @@ import { NavBar } from "../../components/Navbar";
 import { useLocation } from "react-router-dom";
 import { srGetAllUserAppointmentRequests, srRemoveAppointmentRequest } from "../../service/srUser";
 import { formatePrice, formateDateAndTime } from "../../shared/utils";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "./appointmentsHistoryPage.css";
 
 export const AppointmentsHistoryPage = () => {
@@ -12,26 +14,11 @@ export const AppointmentsHistoryPage = () => {
     window.location.href = "/";
   }
 
-  const [appointmentRequests, setAppointmentRequests] = useState([
-    {
-      uar_id: "",
-      uar_services: "",
-      uar_total_price: "",
-      uar_status: "",
-      uar_updated_at: "",
-      barber: {
-        u_firstname: "",
-        u_lastname: "",
-      },
-      barberInfo: {
-        b_shop_name: "",
-      }
-    },
-  ]);
+  const [appointmentRequests, setAppointmentRequests] = useState([]);
 
   useEffect(() => {
     srGetAllUserAppointmentRequests(u_info.u_id, "completed").then((res) => {
-      if (res) {
+      if((res && res.length > 0) && res !== undefined){
         setAppointmentRequests(res);
       }
     });
@@ -40,7 +27,9 @@ export const AppointmentsHistoryPage = () => {
   const removeAppointment = (uar_id) => {
     srRemoveAppointmentRequest(uar_id).then((res) => {
       if (res) {
-        window.location.reload();
+        const newAppointmentRequests = appointmentRequests.filter((item) => item.uar_id !== uar_id);
+        setAppointmentRequests(newAppointmentRequests);
+        toast.success("Appointment removed successfully");
       }
     });
   };
@@ -59,7 +48,7 @@ export const AppointmentsHistoryPage = () => {
             }}
           >
             {
-              appointmentRequests[0].uar_id !== "" ? (
+              appointmentRequests.length > 0 ? (
                 appointmentRequests.map((appointmentRequest, index) => {
                   const { uar_id, uar_services, uar_total_price, uar_status, uar_updated_at, barber, barberInfo } = appointmentRequest;
                   const { u_firstname, u_lastname } = barber;
@@ -89,7 +78,9 @@ export const AppointmentsHistoryPage = () => {
                           <h3 style={{ color: "#4caf50" }}>{uar_status}</h3>
                         </div>
                         <button style={{ backgroundColor: "red" }}
-                          onClick={() => removeAppointment(uar_id)}
+                          onClick={() => {
+                            removeAppointment(uar_id)
+                          }}
                         >Remove</button>
                       </div>
                     </div>
@@ -111,6 +102,7 @@ export const AppointmentsHistoryPage = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   )
 };
